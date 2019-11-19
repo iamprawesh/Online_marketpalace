@@ -35,3 +35,12 @@ footer {
   color: white;
   text-align: center;
 }
+/*------------------------my adds css*/
+.product_listing {
+  padding: 20px;
+  background-color: red;
+
+}
+.main {
+  border: 1px solid black;
+}

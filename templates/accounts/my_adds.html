@@ -11,6 +11,7 @@
 </style>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="{% static 'css/sidebar.css' %}">
+
 {% endblock %}
 {% block body %}
 
@@ -26,11 +27,52 @@
 		</div>
 		</div>
 		<div class="col-10">
-			{% for my_product in my_products %}
-				{{ my_product.title }}
-			{% endfor %}
+				<!-- Products -->
+		
+			<div class="container" >
+				<div class="row">
+					<div class="col-xs-8">
+						<div class="panel panel-info" style="margin-top: 20px;">
+							
+							<div class="panel-body" style="margin-top: 40px;">
+								{% for product in my_products %}
+								<div class="row">
+									<div class="col-xs-3"><img class="img-responsive" src="http://placehold.it/100x70">
+									</div>
+									<div class="col-xs-4">
+										<h4 class="product-name"><strong>{{ product.title }}</strong></h4><h4>
+											<small>Product ID {{ product.id }}</small>
+										</h4>
+									</div>
+									<div class="col-xs-5">
+										<div class="col-xs-5 text-right">
+											<button type="button" class="btn btn-success btn-block" style="font-size: 15px;">
+											Edit
+										</button>
+										</div>
+										<div class="col-xs-5">
+										<button type="button" class="btn btn-danger btn-block" style="font-size: 15px;">
+												<span class="glyphicon glyphicon-trash"></span>
+											Delete
+										</button>
+									</div>
+									<div class="col-xs-1">
+											<button type="button" class="btn btn-link btn-xs">
+											</button>
+										</div>
+									</div>
+								</div>
+								<hr>
+								{% endfor %}	
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	<!-- end product  -->
+	<!-- end product  -->
 		</div>
 	</div>
 </div>
-
+<
 {% endblock %}
