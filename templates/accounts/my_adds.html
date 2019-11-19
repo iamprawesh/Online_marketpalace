@@ -1,0 +1,36 @@
+{% extends 'base_1.html' %}
+{% load static %}
+{% block title %}Dashboard | My adds{% endblock %}
+{% block head %}
+
+
+
+<style type="text/css">
+
+
+</style>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="{% static 'css/sidebar.css' %}">
+{% endblock %}
+{% block body %}
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2 sidebar-1">
+      	<div id="sidebar">
+		<ul>
+			<li><a href="{% url 'all_products' %}">View All Ads</a></li>
+			<li><a href="{% url 'my_add' %}">View all My Adds</a></li>
+			<li><a href="">Inquery Request</a></li>
+		</ul>
+		</div>
+		</div>
+		<div class="col-10">
+			{% for my_product in my_products %}
+				{{ my_product.title }}
+			{% endfor %}
+		</div>
+	</div>
+</div>
+
+{% endblock %}

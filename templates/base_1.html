@@ -1,0 +1,400 @@
+{% load static %}
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>{% block title %}{% endblock %}</title><link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"><!-- bootstrap-CSS -->
+<link rel="stylesheet" href="{% static 'css/bootstrap-select.css' %}"><!-- bootstrap-select-CSS -->
+<link href="{% static 'css/style.css' %}" rel="{% static 'stylesheet" type="text/css" media="all" /><!-- style.css -->
+<link rel="stylesheet" href="{% static 'css/flexslider.css' %}" type="text/css" media="screen" /><!-- flexslider-CSS -->
+<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" /><!-- fontawesome-CSS -->
+
+<link rel="stylesheet" href="{% static 'css/menu_sideslide.css' %}" type="text/css" media="all">
+<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all"><!-- Navigation-CSS -->
+<!-- Navigation-CSS -->
+<!-- meta tags -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Resale Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web, free webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //meta tags -->
+<!--fonts-->
+<link href="{% static '//fonts.googleapis.com/css?family=Ubuntu+Condensed' %}" rel='stylesheet' type='text/css'>
+<link href="{% static '//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' %}" rel='stylesheet' type='text/css'>
+<!--//fonts-->	
+
+<style type="text/css">
+    body {
+        background: #e2eaef;
+        font-family: "Open Sans", sans-serif;
+    }
+    h2 {
+        color: #000;
+        font-size: 26px;
+        font-weight: 300;
+        text-align: center;
+        text-transform: uppercase;
+        position: relative;
+        margin: 30px 0 60px;
+    }
+    h2::after {
+        content: "";
+        width: 100px;
+        position: absolute;
+        margin: 0 auto;
+        height: 4px;
+        border-radius: 1px;
+        background: #7ac400;
+        left: 0;
+        right: 0;
+        bottom: -20px;
+    }
+    .carousel {
+        margin: 50px auto;
+        padding: 0 70px;
+    }
+    .carousel .item {
+        color: #747d89;
+        min-height: 325px;
+        text-align: center;
+        overflow: hidden;
+    }
+    .carousel .thumb-wrapper {
+        padding: 25px 15px;
+        background: #fff;
+        border-radius: 6px;
+        text-align: center;
+        position: relative;
+        box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+        margin-bottom: 20px;
+    }
+    .carousel .item .img-box {
+        height: 120px;
+        margin-bottom: 20px;
+        width: 100%;
+        position: relative;
+    }
+    .carousel .item img {   
+        max-width: 100%;
+        max-height: 100%;
+        display: inline-block;
+        position: absolute;
+        bottom: 0;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+    }
+    .carousel .item h4 {
+        font-size: 18px;
+    }
+    .carousel .item h4, .carousel .item p, .carousel .item ul {
+        margin-bottom: 5px;
+    }
+    .carousel .thumb-content .btn {
+        color: #7ac400;
+        font-size: 11px;
+        text-transform: uppercase;
+        font-weight: bold;
+        background: none;
+        border: 1px solid #7ac400;
+        padding: 6px 14px;
+        margin-top: 5px;
+        line-height: 16px;
+        border-radius: 20px;
+    }
+    .carousel .thumb-content .btn:hover, .carousel .thumb-content .btn:focus {
+        color: #fff;
+        background: #7ac400;
+        box-shadow: none;
+    }
+    .carousel .thumb-content .btn i {
+        font-size: 14px;
+        font-weight: bold;
+        margin-left: 5px;
+    }
+    .carousel .carousel-control {
+        height: 44px;
+        width: 40px;
+        background: #7ac400;    
+        margin: auto 0;
+        border-radius: 4px;
+        opacity: 0.8;
+    }
+    .carousel .carousel-control:hover {
+        background: #78bf00;
+        opacity: 1;
+    }
+    .carousel .carousel-control i {
+        font-size: 36px;
+        position: absolute;
+        top: 50%;
+        display: inline-block;
+        margin: -19px 0 0 0;
+        z-index: 5;
+        left: 0;
+        right: 0;
+        color: #fff;
+        text-shadow: none;
+        font-weight: bold;
+    }
+    .carousel .item-price {
+        font-size: 13px;
+        padding: 2px 0;
+    }
+    .carousel .item-price strike {
+        opacity: 0.7;
+        margin-right: 5px;
+    }
+    .carousel .carousel-control.left i {
+        margin-left: -2px;
+    }
+    .carousel .carousel-control.right i {
+        margin-right: -4px;
+    }
+    .carousel .carousel-indicators {
+        bottom: -50px;
+    }
+    .carousel-indicators li, .carousel-indicators li.active {
+        width: 10px;
+        height: 10px;
+        margin: 4px;
+        border-radius: 50%;
+        border: none;
+    }
+    .carousel-indicators li {   
+        background: rgba(0, 0, 0, 0.2);
+    }
+    .carousel-indicators li.active {    
+        background: rgba(0, 0, 0, 0.6);
+    }
+    .carousel .wish-icon {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        z-index: 99;
+        cursor: pointer;
+        font-size: 16px;
+        color: #abb0b8;
+    }
+    .carousel .wish-icon .fa-heart {
+        color: #ff6161;
+    }
+    .star-rating li {
+        padding: 0;
+    }
+    .star-rating i {
+        font-size: 14px;
+        color: #ffc000;
+    }
+    .dsbtn {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    background-color: #0099e5;
+    /*padding: 10px 18px;*/
+    /*float: right;*/
+    border-radius: 3px;
+}
+</style>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".wish-icon i").click(function(){
+            $(this).toggleClass("fa-heart fa-heart-o");
+        });
+    }); 
+</script>
+{% block head %}
+
+{% endblock %}
+</head>
+<body>	
+		<!-- Navigation -->
+		<!-- //Navigation -->
+	<!-- header -->
+	<header>
+		<div class="container">
+			<div class="agile-its-header">
+				<div class="logo" class="" >
+					<h1><a href="{% url 'home' %}"style="font-size: 40px;text-decoration: none;"><span >Online-</span>Marketplace</a></h1>
+				</div>
+				<div class="agileits_search">
+					<form action="#" method="post">
+						<input name="Search" type="text" placeholder="How can we help you today?" required="" />
+						<select id="agileinfo_search" name="agileinfo_search" required="">
+							<option value="">All Categories</option>
+
+					{% for category in categories %}
+							<option value="{{ category.name }}">{{ category.name }}</option>
+					{% endfor %}
+						</select>
+						<button type="submit" class="btn btn-default" aria-label="Left Align">
+							<i class="fa fa-search" aria-hidden="true"> </i>
+						</button>
+					</form>
+					      {% if user.is_authenticated %}
+<!-- 							<a class="post-w3layouts-ad" href="{% url 'logout' %}">Logout</a>
+                            <a href="{% url 'dashboard' %}" class="btn dsbtn">Dashboard</a> -->
+                            <a class="post-w3layouts-ad" href="{% url 'logout' %}" style="margin-left:10px; ">Logout</a>
+                            <a class="post-w3layouts-ad" href="{% url 'dashboard' %}" style="font-size:11px;padding: 14px; ">Dashboard</a>
+						{% else %}
+							<a class="post-w3layouts-ad" href="{% url 'login' %}" style="margin-left:10px;">login</a><a class="post-w3layouts-ad" href="{% url 'register' %}">Signup</a>
+
+						{% endif %}
+
+				</div>	
+				<div class="clearfix"></div>
+				<div class="clearfix"></div>
+
+			</div>
+		</div>
+	</header>
+
+	<!-- //header -->
+
+	{% block body%}
+	{% endblock %}
+	
+	<!-- //header -->
+	<!-- Slider -->
+		
+		<!-- //Slider -->
+		<!--footer section start-->		
+		<footer >	
+			<div class="agileits-footer-bottom text-center">
+			<div class="container">
+				<div class="w3-footer-logo">
+					<h1><a href="{% url 'home' %}"><span>Online</span>Marketplace</a></h1>
+				</div>
+				<!-- <div class="w3-footer-social-icons">
+					<ul>
+						<li><a class="facebook" href="#"><i class="fa fa-facebook" aria-hidden="true"></i><span>Facebook</span></a></li>
+						<li><a class="twitter" href="#"><i class="fa fa-twitter" aria-hidden="true"></i><span>Twitter</span></a></li>
+						<li><a class="flickr" href="#"><i class="fa fa-flickr" aria-hidden="true"></i><span>Flickr</span></a></li>
+						<li><a class="googleplus" href="#"><i class="fa fa-google-plus" aria-hidden="true"></i><span>Google+</span></a></li>
+						<li><a class="dribbble" href="#"><i class="fa fa-dribbble" aria-hidden="true"></i><span>Dribbble</span></a></li>
+					</ul>
+				</div> -->
+				<div class="copyrights">
+					<p> © {% now 'Y' %} Maketplaece. All Rights Reserved</a></p>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		</footer>
+        <!--footer section end-->
+		<!-- Navigation-Js-->
+        {% block javascript %}
+        {% endblock %}
+			<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+			<script type="text/javascript" src="{% static 'js/classie.js' %}"></script>
+		<!-- //Navigation-Js-->
+		<!-- js -->
+		<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+		<!-- js -->
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="{% static 'js/bootstrap.js' %}"></script>
+		<script src="{% static 'js/bootstrap-select.js' %}"></script>
+		<script>
+		  $(document).ready(function () {
+			var mySelect = $('#first-disabled2');
+
+			$('#special').on('click', function () {
+			  mySelect.find('option:selected').prop('disabled', true);
+			  mySelect.selectpicker('refresh');
+			});
+
+			$('#special2').on('click', function () {
+			  mySelect.find('option:disabled').prop('disabled', false);
+			  mySelect.selectpicker('refresh');
+			});
+
+			$('#basic2').selectpicker({
+			  liveSearch: true,
+			  maxOptions: 1
+			});
+		  });
+		</script>
+		<!-- language-select -->
+		<script type="text/javascript" src="js/jquery.leanModal.min.js"></script>
+		<link href="{% static 'css/jquery.uls.css' %}" rel="stylesheet"/>
+		<link href="{% static 'css/jquery.uls.grid.css' %}" rel="stylesheet"/>
+		<link href="{% static 'css/jquery.uls.lcd.css' %}" rel="stylesheet"/>
+		<!-- Source -->
+		<script src="{% static 'js/jquery.uls.data.js' %}"></script>
+		<script src="{% static 'js/jquery.uls.data.utils.js' %}"></script>
+		<script src="{% static 'js/jquery.uls.lcd.js' %}"></script>
+		<script src="{% static 'js/jquery.uls.languagefilter.js' %}"></script>
+		<script src="{% static 'js/jquery.uls.regionfilter.js' %}"></script>
+		<script src="{% static 'js/jquery.uls.core.js' %}"></script>
+		<!-- //language-select -->
+		<script type="text/javascript" src="{% static 'js/jquery.flexisel.js' %}"></script><!-- flexisel-js -->	
+					<script type="text/javascript">
+						 $(window).load(function() {
+							$("#flexiselDemo3").flexisel({
+								visibleItems:1,
+								animationSpeed: 1000,
+								autoPlay: true,
+								autoPlaySpeed: 5000,    		
+								pauseOnHover: true,
+								enableResponsiveBreakpoints: true,
+								responsiveBreakpoints: { 
+									portrait: { 
+										changePoint:480,
+										visibleItems:1
+									}, 
+									landscape: { 
+										changePoint:640,
+										visibleItems:1
+									},
+									tablet: { 
+										changePoint:768,
+										visibleItems:1
+									}
+								}
+							});
+							
+						});
+					   </script>
+		<!-- Slider-JavaScript -->
+		<!-- //Slider-JavaScript -->
+		<!-- here stars scrolling icon -->
+			<script type="text/javascript">
+				$(document).ready(function() {
+					/*
+						var defaults = {
+						containerID: 'toTop', // fading element id
+						containerHoverID: 'toTopHover', // fading element hover id
+						scrollSpeed: 1200,
+						easingType: 'linear' 
+						};
+					*/
+										
+					$().UItoTop({ easingType: 'easeOutQuart' });
+										
+					});
+                setTimeout(function(){
+                    $('#message').fadeOut('slow');
+                },3000);
+			</script>
+			<!-- start-smoth-scrolling -->
+			<script type="text/javascript" src="{% static 'js/move-top.js' %}"></script>
+			<script type="text/javascript" src="{% static 'js/easing.js' %}"></script>
+			<script type="text/javascript">
+				jQuery(document).ready(function($) {
+					$(".scroll").click(function(event){		
+						event.preventDefault();
+						$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+					});
+				});
+			</script>
+
+			<!-- start-smoth-scrolling -->
+		<!-- //here ends scrolling icon -->
+</body>		
+</html>

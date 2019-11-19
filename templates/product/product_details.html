@@ -1,0 +1,111 @@
+{% extends 'base_1.html' %}
+{% block title %}{{ pro.title }}
+{% endblock %}
+
+{% block head %}
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{% endblock %}
+{% block body %}
+    <div class="w3layouts-breadcrumbs text-center">
+        <div class="container">
+            <span class="agile-breadcrumbs">
+            <a href="{% url 'home' %}"><i class="fa fa-home home_1"></i></a> 
+            <a href="{% url 'all_products' %}">All Ads</a> / 
+            <a href="">{{ pro.category }}</a>
+        </div>
+    </div>
+    <div class="container">
+<hr>
+
+    
+<div class="card">
+    <div class="row">
+        <aside class="col-sm-5 border-right">
+<article class="gallery-wrap"> 
+<div class="img-big-wrap">
+</div> <!-- slider-product.// -->
+<div class="img-small-wrap">
+  <div class="item-gallery"> <img src="{{ pro.image.url }}"> </div>
+</div> <!-- slider-nav.// -->
+</article> <!-- gallery-wrap .end// -->
+        </aside>
+        <aside class="col-sm-7">
+<article class="card-body p-5">
+    <h3 class="title mb-3 display-4" >{{ pro.title }}</h3>
+
+<p class="price-detail-wrap"> 
+    
+    <span style="font-size: 30px; color: red;"><b>Rs {{ pro.price }}</b></span> 
+</p> <!-- price-detail-wrap .// -->
+<dl class="item-property">
+  <dt style="font-size: 20px;">{{ pro.descripion }}</dt>
+  <dd><p>{{ pro.descripion }}</p></dd>
+</dl>
+<dl class="param param-feature">
+  <dt style="font-size: 20px;">Condition</dt>
+  <dd>{{ pro.condition }}</dd>
+</dl>  <!-- item-property-hor .// -->
+<dl class="param param-feature">
+  <dt style="font-size: 20px;">Delivery Details</dt>
+  <dd><span class="font-weight-bold ml-3">Home Delivery :</span>{{ pro.home_delivery }}</dd>
+  <dd><span class="font-weight-bold ml-3">Delivery Area  :</span>{{ pro.delivery_area }}</dd>
+  <dd><span class="font-weight-bold ml-3">Price  :</span>{{ pro.home_delivery_price }}</dd>
+  
+
+</dl>  <!-- item-property-hor .// -->
+<dl class="param param-feature">
+  <dt style="font-size: 20px;">Delivery</dt>
+  <dd>{{ pro.home_delivery }}</dd>
+    <dt style="font-size: 20px;">Delivery Area</dt>
+  <dd>{{ pro.delivery_area }}</dd>
+    <dt style="font-size: 20px;">Home Delivery price</dt>
+  <dd>{{ pro.home_delivery_price }}</dd>
+       <dt style="font-size: 20px;">Seller Information</dt>
+  <dd><b>Username </b> {{ pro.author }}</dd>
+  <dd><b>Email</b> {{ pro.author.email }}</dd>
+
+</dl>  <!-- item-property-hor .// -->
+<hr>
+    <div class="row">
+        <div class="col-sm-5">
+            <dl class="param param-inline">
+
+            </dl>  <!-- item-property .// -->
+        </div> <!-- col.// -->
+        <div class="col-sm-7">
+            <dl class="param param-inline">
+                <p><i class="glyphicon glyphicon-map-marker"></i>{{ pro.state }},{{ pro.city }}</p>
+                  <dd>
+                  </dd>
+            </dl>  <!-- item-property .// -->
+        </div> <!-- col.// -->
+    </div> <!-- row.// -->
+    <hr>
+    <dt>Seller Information</dt>
+              
+
+    <a href="#" class="btn btn-lg btn-outline-primary text-uppercase">  Negotiable the Price </a>
+    <a href="#" class="btn btn-lg btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> make an Order </a><br><span style="font-size: .9em; margin-left: 180px;" class="text-gray-dark">Once you make an order you will be getting call with in hours</span>
+</article> <!-- card-body.// -->
+        </aside> <!-- col.// -->
+    </div> <!-- row.// -->
+</div> <!-- card.// -->
+<div>
+    </div>
+</div>
+<!--container.//-->
+
+{% endblock %}
+{% block javascript %}
+<script type="text/javascript">
+                jQuery(document).ready(function($) {
+                    $(".scroll").click(function(event){     
+                        event.preventDefault();
+                        $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+                    });
+                });
+            </script>
+
+        {% endblock %}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <style type="text/css">
+    body{
+      background-color: ;
+    }
+    h1{
+      color: #0099e5;
+      padding: 10px;
+      margin-left: 100px;
+      font-weight: normal;
+    }
+    label{
+      padding: 10px;
+    letter-spacing: 0.1em;
+
+    }
+.post-ad-form form select {
+    border: 1px solid #ff4c4c;
+    background-color: #fff;
+    padding: 8px;
+    width: auto;
+    margin-bottom: 25px;
+}
+    input[type="text"],input[type="number"],select,textarea{
+    padding: 10px 10px 10px 10px;
+    width: 100%;
+    margin-bottom: 25px;
+    border: 1px solid #0099e5;
+    outline: none;
+    color: #555;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+    float: left;
+}
+.post-ad-form {
+    border: 1px solid #eee;
+    padding: 40px;
+    margin-bottom: 60px;
+}
+li 
+    {
+      /*margin-left: 260px;*/
+    }
+  </style>
+</head>
+<body>
+<div>
+  <h1 class="">Post Your Ad</h1>
+</div>
+
+
+
+<div class="post-ad-form">
+  <form method="post" id="productForm"  enctype="multipart/form-data" data-cities-url="{% url 'ajax_load_cities' %}" novalidate>
+    {% csrf_token %}
+    <table>
+      {{ form.as_table }}
+    </table>
+    <button type="submit">Save</button>
+  </form>
+<!-- script -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+          <script>
+      $("#id_state").change(function () {
+        var url = $("#productForm").attr("data-cities-url");
+        var stateId = $(this).val();
+        $.ajax({
+          url: url,
+          data: {
+            'state': stateId
+          },
+          success: function (data) {
+            $("#id_city").html(data);
+          }
+        });
+      });
+  </script>
+   </div>
+</body>
+</html>

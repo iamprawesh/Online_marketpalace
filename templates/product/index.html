@@ -1,0 +1,162 @@
+{% extends 'base_1.html' %}
+{% block title %}Resale
+{% endblock %}
+{% block head %}
+	<style type="text/css">
+		.add-prod{
+
+		}
+		.w3-categories{
+			/*background-color: white;*/
+		}
+.example_e {
+border: none;
+background: #0099e5;
+color: #ffffff !important;
+font-weight: 100;
+padding: 20px;
+padding-left: 30px;
+padding-right: 30px;
+text-transform: uppercase;
+border-radius: 6px;
+display: inline-block;
+transition: all 0.3s ease 0s;
+}
+.example_e:hover {
+color: #ffffff !important;
+font-weight: 700 !important;
+letter-spacing: 3px;
+background: #0099e5;
+-webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+-moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+transition: all 0.3s ease 0s;
+border:3px solid  white;
+}
+	</style>
+{% endblock %}
+
+{% block body %}
+	<div class="slider">
+		<div class="">
+				<div class="button_cont" align="center"><a class="example_e" href="{% url 'product_add' %}" target="_blank" rel="nofollow noopener">Post Add</a></div>
+		</div>
+	</div>
+<!-- content-starts-here -->
+		<div class="main-content">
+			<div class="w3-categories">
+				<h3>Browse Categories</h3>
+				<div class="container">
+
+					{% for category in categories %}
+					<div class="col-md-3">
+						<div class="focus-grid w3layouts-boder1">
+
+							<a class="btn-8" href="{% url 'category_detail' slug=category.slug %}">
+								<div class="focus-border">
+									<div class="focus-layout">
+										<div class="focus-image"><i class="fa {{ category.class_name }}"></i></div>
+										<h4 class="clrchg">{{ category.name }}</h4>
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+					{% endfor %}
+					<div class="clearfix"></div>
+				</div>
+			</div>
+
+<!-- end category -->									
+<!-- products items -->
+<div style="background-color: white;">
+	<div class="container" style="">
+	    <div class="row">
+	        <h2>Fresh <b>Products</b></h2>
+            <div  class="carousel slide" data-ride="carousel" data-interval="0">  
+            <!-- Wrapper for carousel items -->
+                <div class="item carousel-item active">
+                    <div class="row">
+                    	{% for product in featured_post %}
+                        <div class="col-sm-3" class="mb-4">
+                        	<span class="price h3 text-white"> 
+							        <span class="currency " style="letter-spacing: 0;"></span><span class="num">Featured</span>
+						    </span>  
+							
+						    </span> 
+                            <div class="thumb-wrapper">
+                                <!-- <span class="wish-icon"><i class="fa fa-heart-o"></i></span> -->
+                                <div class="img-box">
+                                    <img src="{{ product.image.url }}" class="img-responsive img-fluid" alt="">                                  
+                                </div>
+                                <div class="thumb-content">
+                                    <h4>{{ product.title }}</h4>                                 
+                                    <p class="" style="border:none;"><span style="float:left">{{ product.condition }}</span><b style="font-size: 20px;">Rs {{ product.price }}</b></p>
+                                    <a href="{% url 'pro_details' slug=product.slug %}" class="btn btn-primary">View detail</a>
+                                </div>                      
+                            </div>
+                        </div>
+                        {% endfor %}
+                    	{% for product in products %}
+                        <div class="col-sm-3" class="mb-4">
+                        	
+                            <div class="thumb-wrapper">
+                                <!-- <span class="wish-icon"><i class="fa fa-heart-o"></i></span> -->
+                                <div class="img-box">
+                                    <img src="{{ product.image.url }}" class="img-responsive img-fluid" alt="">                                  
+                                </div>
+                                <div class="thumb-content">
+                                    <h4>{{ product.title }}</h4>                                 
+                                    <p class="" style="border:none;"><span style="float:left">{{ product.condition }}</span><b style="font-size: 20px;">Rs {{ product.price }}</b></p>
+                                    <a href="{% url 'pro_details' slug=product.slug %}" class="btn btn-primary">View detail</a>
+                                </div>                      
+                            </div>
+                        </div>
+                        {% endfor %}
+		            </div>
+
+		            <!-- pagination -->
+						{% if products.has_other_pages  %}
+			              <ul class="pagination">
+			                {% if products.has_previous %}
+			                  <li class="page-item">
+			                    <a href="?page={{ products.previous_page_number }}" class="page-link">&laquo;</a>
+			                  </li>
+			                  {% else %}
+			                    <li class="page-item disabled">
+			                      <a class="page-link">&laquo;</a>
+			                    </li>
+			                {% endif %}
+			                <!-- end for previopus -->
+
+			                    {% for i in products.paginator.page_range %}
+			                      {% if listing.number == i %}
+			                      <li class="page-item active">
+			                        <a class="page-link">{{i}}</a>
+			                      </li>
+			                      {% else %}
+			                        <li class="page-item">
+			                          <a href="?page={{ i }}" class="page-link">{{i}}</a>
+			                        </li>
+			                        {% endif %}
+			                    {% endfor %}
+			                  {% if products.has_next %}
+			                    <li class="page-item">
+			                      <a href="?page={{ products.next_page_number }}" class="page-link">&raquo;</a>
+			                    </li>
+			                    {% else %}
+			                      <li class="page-item disabled">
+			                        <a class="page-link">&raquo;</a>
+			                      </li>
+			                  {% endif %}
+			              </ul>
+	              {% endif %}
+		        </div>
+	        </div>
+
+	    </div>
+
+	</div>
+</div>
+
+<!-- end product -->
+{% endblock %}

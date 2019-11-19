@@ -1,0 +1,37 @@
+ #sidebar ul{
+	list-style-type:none;
+	font-size: 20px;
+}
+ #sidebar {
+ 	margin-top: 30px;
+ 	text-align: center;
+ }
+ .sidebar-1 {
+ 	background-color: #dee2e6;
+ 	text-align: center;
+ 	height: 100vh;
+
+ }
+  #sidebar li:hover{
+  	background-color: #ebebeb;
+ }
+ #sidebar ul {
+ 	margin-top: 80px;
+ }
+ #sidebar ul li {
+ 	border-bottom: 1px solid grey;
+ 	margin-top: 30px;
+ 	margin-bottom: 30px;
+ 	padding: 15px;
+ 	/*border:1px solid grey;*/
+ }
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: red;
+  color: white;
+  text-align: center;
+}
