@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.utils.text import slugify
-
+import uuid
 # Create your models here.
 
 class Category(models.Model):
@@ -70,11 +70,14 @@ class Product(models.Model):
     created = models.DateTimeField(default=timezone.now)
     slug = models.SlugField(blank=True,null=True) 
     author = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
-
+    add_id = models.SlugField(blank=True,null=True)
 
     def save(self,*args,**kwargs):
         if not self.slug and self.title:
-            self.slug = slugify(self.title[0:20]+'-'+ str(self.id))
+            self.slug = slugify(self.title[0:20]+'-'+str(101)+str(self.id))
+        if not self.add_id and self.title:
+            self.add_id = slugify(str(101)+str(self.id))
+
         super(Product,self).save(*args,**kwargs)
     def __str__(self):
         return self.title

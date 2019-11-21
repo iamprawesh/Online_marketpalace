@@ -11,7 +11,11 @@
 </style>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="{% static 'css/sidebar.css' %}">
-
+<style type="text/css">
+	a:hover {
+		text-decoration: none;
+	}
+</style>
 {% endblock %}
 {% block body %}
 
@@ -20,40 +24,72 @@
     <div class="col-2 sidebar-1">
       	<div id="sidebar">
 		<ul>
-			<li><a href="{% url 'all_products' %}">View All Ads</a></li>
-			<li><a href="{% url 'my_add' %}">View all My Adds</a></li>
-			<li><a href="">Inquery Request</a></li>
-		</ul>
+			<li><a href="{% url 'all_products' %}"
+				
+				>View All Ads
+			</a></li>
+			<li
+			{% if '/accounts/dashboard/my-adds' == request.path %}
+                        class="x"><a href={% url 'my_add' %} class="y">
+                    {% else %}
+                    ><a href={% url 'my_add' %} class="y">
+                    {% endif %}
+			
+
+			View all My Adds</a></li>
+			<li
+			{% if ':prawesh' == request.path %}
+                        class="x"><a href={% url 'my_add' %} class="y">
+                    {% else %}
+                    ><a href={% url 'my_add' %} class="">
+                    {% endif %}
+			
+
+			Order Requests</a></li>
+			<li
+			{% if '' == request.path %}
+                        class="x"><a href={% url 'my_add' %} class="y">
+                    {% else %}
+                    ><a href={% url 'my_add' %} class="">
+                    {% endif %}
+			
+
+			Feature Your Add</a></li>
+		</ul>"
 		</div>
 		</div>
 		<div class="col-10">
 				<!-- Products -->
-		
-			<div class="container" >
+                {% include 'partials/_alert.html' %}
+            	<div class="container" style="font-size: 15px;">
+
 				<div class="row">
 					<div class="col-xs-8">
+					<h2 class="text-center" style="text-transform: uppercase; margin-top: 10px;"><b>View All My Adds</b></h2><hr>
+
 						<div class="panel panel-info" style="margin-top: 20px;">
 							
 							<div class="panel-body" style="margin-top: 40px;">
 								{% for product in my_products %}
 								<div class="row">
-									<div class="col-xs-3"><img class="img-responsive" src="http://placehold.it/100x70">
+									<div class="col-xs-3">
+										<img class="img-responsive"  src="{{ product.image.url }}">
 									</div>
 									<div class="col-xs-4">
 										<h4 class="product-name"><strong>{{ product.title }}</strong></h4><h4>
-											<small>Product ID {{ product.id }}</small>
+											<small>Product ID  101{{ product.id }}</small>
 										</h4>
 									</div>
 									<div class="col-xs-5">
 										<div class="col-xs-5 text-right">
-											<button type="button" class="btn btn-success btn-block" style="font-size: 15px;">
+											<button type="button" class="btn btn-success btn-block" href="{% url 'product_update' pk=product.id %}" style="font-size: 15px;" onclick="window.location.href='{% url 'product_update' pk=product.id %}'">
 											Edit
 										</button>
 										</div>
 										<div class="col-xs-5">
-										<button type="button" class="btn btn-danger btn-block" style="font-size: 15px;">
+										<button type="button" class="btn btn-danger btn-block" style="font-size: 15px;"  onclick="window.location.href='{% url 'product_delete' pk=product.id %}'">
 												<span class="glyphicon glyphicon-trash"></span>
-											Delete
+											Delete</button>
 										</button>
 									</div>
 									<div class="col-xs-1">

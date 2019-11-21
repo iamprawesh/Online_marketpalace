@@ -15,6 +15,13 @@
   #sidebar li:hover{
   	background-color: #ebebeb;
  }
+ .x {
+    background-color:#ebebeb;
+    /*color: black;*/
+ }
+ .y {
+  color: black;
+ }
  #sidebar ul {
  	margin-top: 80px;
  }

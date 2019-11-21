@@ -4,6 +4,9 @@ from . import views
 urlpatterns = [
     path('',views.productlist,name='home'),
     path('add/', views.ProductCreateView.as_view(), name='product_add'),
+    path('update/<pk>', views.ProductUpdateView.as_view(), name='product_update'),
+    path('delete/<pk>', views.ProductDeleteView.as_view(), name='product_delete'),
+
     path('ajax/load-cities/', views.load_cities, name='ajax_load_cities'),
     # path('all-products/', views.all_products, name='all_products'),
     path('all-products/', views.all_items, name='all_products'),

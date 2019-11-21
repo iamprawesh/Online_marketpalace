@@ -1,39 +1,17 @@
 {% extends 'base_1.html' %}
+{% load static %}
 {% block title %}Resale All Product
 {% endblock %}
 <!-- head -->
-{% block head %}<style type="text/css">
-.product-view {
-    padding: 15px;
-    border: 2px solid #;
-}
-.btncontact {
-	border-radius: 10px;
-	background: #0099e5;
-	color: white;
-	padding: 10px 20px 10px 20px;
-}
-.btncontact:hover {
-	color: black;
-	background: #ff4c4c;
-}
-.interested {
-    margin: 17px;
-    padding: 31px 24px;
-    background: rgba(100, 132, 109, 0.53);
-    margin-left: 15%;
-    margin-right: 1px;
-}
-.item-price {
-    border: 3px solid rgba(100, 132, 109, 0.53);
-    margin-left: 15%;
-    padding: 0 15px;
-    position: relative;
-}
-</style>
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/product_detail.css' %}">
 {% endblock %}
 <!-- body -->
+<script type="text/javascript">
+	
+</script>
 {% block body %}
+
 	<!-- breadcrumbs -->
 	<div style=" background: white;">
 	<div class="w3layouts-breadcrumbs text-center">
@@ -42,22 +20,24 @@
 			<a href="index.html"><i class="fa fa-home home_1"></i></a> / 
 			<a href="{% url 'all_products' %}">All Ads</a> / 
 			<a href="cars.html">Cars</a> / 
-			<span>{{ pro.title }}</span></span>
+			<span>{{ product.title }}</span></span>
 		</div>
 	</div>
 	<!-- //breadcrumbs -->
+	<!-- form -->
+
+	<!-- endform -->
 	<div class="">
 		<div class="container">
 			<div class="product-desc">
 				<div class="col-md-7 product-view">
-					<h2>{{ pro.title }}</h2>
+					<h2>{{ product.title }}</h2>
 					<p> <i class="glyphicon glyphicon-map-marker"></i><a href="#">state</a>, <a href="#">city</a>| Added at 06:55 pm, Ad ID: 987654321</p>
 					<div class="flexslider" style="height: 60%">
-								<img src="{{ pro.image.url }}" style=";
-  height: auto;" />
+								<img src="{{ product.image.url }}"  />
 
 						<ul class="slides">
-							<li data-thumb="{{ pro.image.url }}">
+							<li data-thumb="{{ product.image.url }}">
 							</li>
 <!-- 							<li data-thumb="images/ss2.jpg">
 								<img src="images/ss2.jpg" />
@@ -105,7 +85,7 @@
 					</div>
 					<div class="interested text-center">
 						<h4>Interested in this Ad?<small> </small></h4>
-						<button class="btn button btncontact" >Contact the Seller</button>
+						<div class="button_cont" align="center"><a class="example_e" data-toggle="modal" data-target="#myModal" href="" target="" rel="nofollow noopener">Contact the Seller</a></div>	
 					</div>
 				</div>
 			<div class="clearfix"></div>
@@ -113,5 +93,55 @@
 		</div>
 	</div>
 	</div>
+
 	<!--//single-page-->
+	<!-- form -->
+		<div class="container">
+  <!-- Trigger the modal with a button -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+ 
+        <div class="modal-body" style="padding: 10px;">
+          <div class="form-style-5">
+			<form action="{% url 'contact'  %}" method="POST">
+				{% csrf_token %}
+				{% if user.is_authenticated %}
+	              <input type="hidden" name="user_id" value="{{ user.id }}">
+
+				{% else %}
+	              <input type="hidden" name="user_id" value="0">
+				{% endif %}
+				  <input type="hidden" name="seller_email" value="{{ product.author.email }}">
+				  <input type="hidden" name="listing_slug" value="{{ product.slug }}">
+
+            <input type="hidden" name="listing_id" value="{{ product.id }}">
+			<fieldset>
+			<legend><span class="number">.</span>Contact to Seller</legend>
+			<label>Product Title</label>
+			<input type="text" name="product_title" placeholder="Product Title *" value="{{ product.title }}" required>
+			<label>Name</label>
+			<input type="text" name="full_name" placeholder="Full Name *" {% if user.is_authenticated %} value="{{ user.first_name }} {{ user.last_name }}" {% endif %}>
+			<label>Email</label>
+			<input type="email" name="email" placeholder="Your Email *" {% if user.is_authenticated %} value="{{ user.email }}" {% endif %} required>
+			<label>Phone</label>
+			<input type="number" name="phone" placeholder="Your Phone *" required>
+			<span class="text-muted">You Will be Getting Call or email by Seller </span>
+			
+			<textarea name="field3" placeholder="Message *"></textarea>
+			<input type="submit" value="Send" />
+			</form>
+			</div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
 {% endblock %}
