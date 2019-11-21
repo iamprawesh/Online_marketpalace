@@ -1,35 +1,95 @@
 {% extends 'base_1.html' %}
-{% load static %}
 {% block title %}Resale All Product
 {% endblock %}
-<!-- head -->
-	
+
 {% block head %}
-	<style type="text/css">
-		footer{
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: red;
-  color: white;
-  text-align: center;}
 
-	</style>
 {% endblock %}
-<!-- body -->
-<script type="text/javascript">
-	
-</script>
-{% block body %}
 
-	{% for p in products %}
-		{{ p.title }}
-	{% endfor %}
-		{% for p in categories %}
-		{{ p.title }}
-	{% endfor %}
-	{% for p in featured_post %}
-		{{ p.title }}
-	{% endfor %}
+{% block body %}
+<div class="total-ads main-grid-border">
+	<div class="container">
+		
+			<div class="ads-grid">
+				<div class="side-bar col-md-3">
+
+				<div class="w3ls-featured-ads">
+					<h2 class="sear-head fer">Featured Ads</h2>
+					<!-- feature post -->
+					{% for fp in featured_post %}
+						<div class="w3l-featured-ad">
+							<a href="{% url 'pro_details' slug=fp.slug p_id=fp.id %}">
+								<div class="w3-featured-ad-left">
+									<img src="{{ fp.image.url }}" title="ad image" alt="" />
+								</div>
+								<div class="w3-featured-ad-right">
+									<h4 href="">{{ fp.title }}</h4>
+									<p>Rs {{ fp.price }}</p>
+								</div>
+								<div class="clearfix"></div>
+							</a>
+						</div>	
+					{% endfor %}
+				</div>
+				</div>
+				{% if products%}
+				<div class="agileinfo-ads-display col-md-9">
+					<div class="wrapper">					
+					<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+					  <ul id="myTab" class="nav nav-tabs nav-tabs-responsive" role="tablist">
+						<li role="presentation" class="active">
+						  <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">
+							<span class="text">All Ads</span>
+						  </a>
+						</li>
+					  </ul>
+					  <div id="myTabContent" class="tab-content">
+						<div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+						   <div>
+							<div id="container">
+							<ul class="list">
+							{% for product in products %}
+								<a href="{% url 'pro_details' slug=product.slug p_id=product.id %}">
+									<li>
+									<img src="{{ product.image.url }}" title="" alt="" />
+									<section class="list-left">
+									<h5 class="title" href="{% url 'pro_details' slug=product.slug p_id=product.id %}" >{{ product.title }}</h5>
+									<span class="adprice">Rs{{ product.price }}</span>
+									<p class="catpath">{{ product.category }}</p>
+									</section>
+									<section class="list-right">
+									<span class="date">Today, 17:02</span>
+									<span class="cityname">City name</span>
+									</section>
+									<div class="clearfix">dfsdfds</div>
+									</li> 
+								</a>
+							{% endfor %}
+							</ul>
+							<!-- pagination -->
+						
+						</div>
+					</div>
+				</div>
+					<!-- end try -->
+			</div>
+		</div>
+	</div>
+</div>
+{% else %}
+<div class="agileinfo-ads-display col-md-9">
+					<div class="wrapper">
+	<h1>No Products Found</h1></div><
+{% endif %}
+
+						
+					  </div>
+					</div>
+				</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+				</div>
+</div>
+
 {% endblock %}

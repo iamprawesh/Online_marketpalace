@@ -17,7 +17,7 @@ from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 
 from django.urls import reverse
-
+from django.db.models import Q
 # cbv
 @method_decorator(login_required, name='dispatch')
 class ProductCreateView(LoginRequiredMixin,CreateView):
@@ -76,6 +76,7 @@ class ProductUpdateView(SuccessMessageMixin, UpdateView):
 @method_decorator(login_required, name='dispatch')        
 class ProductDeleteView(SuccessMessageMixin ,DeleteView):
     model = Product
+
     success_url = reverse_lazy('my_add')
     template_name = 'product/delete_product.html'
     # success_message  = '%(title) Your Product has been deleted'
@@ -92,7 +93,7 @@ def productlist(request):
     products = Product.objects.order_by('-created').filter(featured_post=0)
     featured_posts = Product.objects.filter(featured_post=1)
 
-    paginator = Paginator(products,2)
+    paginator = Paginator(products,4)
     page = request.GET.get('page')
     paged_listings = paginator.get_page(page)
     return render(request,'product/index.html',{
@@ -102,26 +103,40 @@ def productlist(request):
         })
 
 def search(request):
-    queryset_list = Product.objects.order_by('-list_date')
+    queryset_list = Product.objects.order_by('-created')
+    featured_post = Product.objects.order_by('-created').filter(featured_post=1)
+    categories = Category.objects.all()
     keywords = request.GET['keywords']
     category_id = request.GET['category_id']
-
-        # keywords
+    # results = Product.objects.filter(Q(title__icontains=keywords)| Q(description__icontains=keywords))
     if 'keywords' in request.GET:
         keywords = request.GET['keywords']
         if keywords:
             # seach in descrption where ther is somethging
-            queryset_list = queryset_list.filter(description__icontains=keywords)
+            # queryset_list = queryset_list.filter(d__icontains=keywords)
+            queryset_list = Product.objects.filter(Q(title__icontains=keywords)| Q(description__icontains=keywords))
+    if 'category_id' in request.GET:
+        category = request.GET['category_id']
+        if category:
+            # lte stands for less than or equals to
+            queryset_list = queryset_list.filter(category=category_id)
+            # queryset_list = queryset_list.filter(bedrooms__lte=bedrooms)
+        # keywords
+
     context = {
-        'queryset_list':queryset_list
+        'products':queryset_list,
+        'featured_post':featured_post,
+        'categories':categories
     }
     return render(request,'product/search.html',context)
 
 def product_detail(request,p_id,slug):
+    categories = Category.objects.all()
     # product = get_object_or_404(Product, id=id)    
     one_product = get_object_or_404(Product,id=p_id)
     context = {
-        'product':one_product
+        'product':one_product,
+        'categories':categories
     }
     # return render(request,'product/product_details.html',{'pro':pro})
     return render(request,'product/single.html',context)
@@ -129,15 +144,16 @@ def product_detail(request,p_id,slug):
 
 
 def all_products(request):
+    categories = Category.objects.all()
     products = Product.objects.all()
-    return render(request,'product/all_products.html',{'products':products})
+    return render(request,'product/all_products.html',{'products':products,'categories':categories})
 
 # try
 def all_items(request):
     categories = Category.objects.all()
     products = Product.objects.order_by('-created').filter(featured_post=0)
     featured_posts = Product.objects.filter(featured_post=1)
-    paginator = Paginator(products,4)
+    paginator = Paginator(products,1)
     page = request.GET.get('page')
     paged_listings = paginator.get_page(page)
     return render(request,'product/try.html',{

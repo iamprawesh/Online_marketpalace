@@ -223,8 +223,8 @@ Smartphone Compatible web, free webdesigns for Nokia, Samsung, LG, Sony Ericsson
 					<h1><a href="{% url 'home' %}"style="font-size: 40px;text-decoration: none;"><span >Online-</span>Marketplace</a></h1>
 				</div>
 				<div class="agileits_search">
-					<form action="{% url 'search' %}">
-						<input name="keywords" type="text" placeholder="Search" >
+					<form action="{% url 'search' %}" method="GET" value="{{ request.GET.keywords }}">
+						<input name="keywords" type="text" placeholder="Search" value="{{ request.GET.keywords }}" >
 						<select id="agileinfo_search" name="category_id" >
 							<option value="">All Categories</option>
 
