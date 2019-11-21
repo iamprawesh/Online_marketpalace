@@ -25,7 +25,7 @@
     margin-bottom: 25px;
 }
 #id_delivery_area,
-#id_home_delivery_price{
+#id_home_delivery_price,#id_image_2,#id_image_3,#id_image_4,#id_image_5{
   border: 1px solid #ff4c4c;
     background-color: #fff;
     padding: 8px;
@@ -98,6 +98,32 @@ input[type="submit"]:hover
     border: 1px solid black;
     font-weight: bold;
   }
+  .cancel:hover {
+     background-color: white;
+    color: #0099e5;
+    border: 1px solid black;
+    font-weight: bold;
+  }
+  .cancel {
+        background: #0099e5;
+    color: white;
+    -webkit-appearance: none;
+    border: none;
+    text-transform: uppercase;
+    position: relative;
+    padding: 8px 40px;
+    font-size: 15px;
+    letter-spacing: 0.1em;
+    font-weight: 300;
+    -webkit-transition: all 333ms ease-in-out;
+    -moz-transition: all 333ms ease-in-out;
+    -o-transition: all 333ms ease-in-out;
+    -ms-transition: all 333ms ease-in-out;
+    transition: all 333ms ease-in-out;
+    margin-top: 20px;
+    float: right;
+    border-radius: 40px;
+  }
   </style>
 </head>
 <body>
@@ -112,7 +138,10 @@ input[type="submit"]:hover
     <table class="text-center">
       {{ form.as_table }}
     </table>
+    <a href="{% url 'home' %}" class="btn cancel">Cancel</a>
+
     <input type="submit" value="Add product">
+
   </form>
 <!-- script -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

@@ -5,7 +5,7 @@ from .models import Product,City
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ('category','title', 'description','price','condition','image','state','city','home_delivery','delivery_area','home_delivery_price','price_negotiable')
+        fields = ('category','title', 'description','price','condition','image','image_2','image_3','image_4','image_5','state','city','home_delivery','delivery_area','home_delivery_price','price_negotiable')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

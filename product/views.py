@@ -92,7 +92,7 @@ def productlist(request):
     products = Product.objects.order_by('-created').filter(featured_post=0)
     featured_posts = Product.objects.filter(featured_post=1)
 
-    paginator = Paginator(products,4)
+    paginator = Paginator(products,2)
     page = request.GET.get('page')
     paged_listings = paginator.get_page(page)
     return render(request,'product/index.html',{
@@ -101,10 +101,25 @@ def productlist(request):
         'featured_post':featured_posts,
         })
 
+def search(request):
+    queryset_list = Product.objects.order_by('-list_date')
+    keywords = request.GET['keywords']
+    category_id = request.GET['category_id']
 
-def product_detail(request,slug):
+        # keywords
+    if 'keywords' in request.GET:
+        keywords = request.GET['keywords']
+        if keywords:
+            # seach in descrption where ther is somethging
+            queryset_list = queryset_list.filter(description__icontains=keywords)
+    context = {
+        'queryset_list':queryset_list
+    }
+    return render(request,'product/search.html',context)
+
+def product_detail(request,p_id,slug):
     # product = get_object_or_404(Product, id=id)    
-    one_product = get_object_or_404(Product,slug=slug)
+    one_product = get_object_or_404(Product,id=p_id)
     context = {
         'product':one_product
     }
@@ -122,10 +137,10 @@ def all_items(request):
     categories = Category.objects.all()
     products = Product.objects.order_by('-created').filter(featured_post=0)
     featured_posts = Product.objects.filter(featured_post=1)
-    paginator = Paginator(products,1)
+    paginator = Paginator(products,4)
     page = request.GET.get('page')
     paged_listings = paginator.get_page(page)
-    return render(request,'product/all_items.html',{
+    return render(request,'product/try.html',{
         'categories':categories,
         'products':paged_listings,
         'featured_post':featured_posts,

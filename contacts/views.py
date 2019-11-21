@@ -3,6 +3,8 @@ from .models import Contact
 from django.contrib import messages
 
 # Create your views here.
+def contact_now(request):
+	return redirect('home')
 def contact(request):
 	if request.method == 'POST':
 		listing_id = request.POST['listing_id']
@@ -20,12 +22,13 @@ def contact(request):
 			has_contacted = Contact.objects.all().filter(listing_id=listing_id,user_id=user_id)
 			if has_contacted:
 				messages.error(request,'You hgave already made enquery for this listing')
-				return redirect('/pro_details/'+slug)	
+				return redirect('/'+listing_id+slug)
+				
 		contact = Contact(product_title=product_title, listing_id=listing_id,listing_slug=slug, name=name,
         	email=email, phone=phone, message=message, user_id=user_id)
 		contact.save()
 
 		messages.success(request,'Your inquery has been send you will be notified soon')	
-		return redirect('/pro_details/'+slug)
+		return redirect('/'+listing_id+slug)
 
 		# # return redirect('/')

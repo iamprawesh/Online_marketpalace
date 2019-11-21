@@ -59,6 +59,11 @@ class Product(models.Model):
     price = models.IntegerField()
     condition = models.CharField(max_length=100,choices=CONDITION_TYPE)
     image = models.ImageField(upload_to='main_product' )
+    image_2 = models.ImageField(upload_to='main_product',null=True, blank=True)
+    image_3 = models.ImageField(upload_to='main_product',null=True, blank=True)
+    image_4 = models.ImageField(upload_to='main_product',null=True, blank=True)
+    image_5 = models.ImageField(upload_to='main_product',null=True, blank=True)
+
     # image = models.ImageField(upload_to='category/')
     state = models.ForeignKey(State, on_delete=models.SET_NULL, null=True)
     city = models.ForeignKey(City, on_delete=models.SET_NULL, null=True)
@@ -74,7 +79,7 @@ class Product(models.Model):
 
     def save(self,*args,**kwargs):
         if not self.slug and self.title:
-            self.slug = slugify(self.title[0:20]+'-'+str(101)+str(self.id))
+            self.slug = slugify(self.title[0:20])
         if not self.add_id and self.title:
             self.add_id = slugify(str(101)+str(self.id))
 

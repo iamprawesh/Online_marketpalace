@@ -9,10 +9,8 @@
 {% block body %}
 <div class="total-ads main-grid-border">
 	<div class="container">
-		
 			<div class="ads-grid">
 				<div class="side-bar col-md-3">
-
 				<div class="w3ls-featured-ads">
 					<h2 class="sear-head fer">Featured Ads</h2>
 					<!-- feature post -->
@@ -48,11 +46,11 @@
 							<div id="container">
 							<ul class="list">
 							{% for product in products %}
-								<a href="{% url 'pro_details' slug=product.slug %}">
+								<a href="{% url 'pro_details' slug=product.slug p_id=product.id %}">
 									<li>
 									<img src="{{ product.image.url }}" title="" alt="" />
 									<section class="list-left">
-									<h5 class="title" href="{% url 'pro_details' slug=product.slug p_id=product.id %}" >{{ product.title }}</h5>
+									<h5 class="title" href="" >{{ product.title }}</h5>
 									<span class="adprice">Rs{{ product.price }}</span>
 									<p class="catpath">{{ product.category }}</p>
 									</section>

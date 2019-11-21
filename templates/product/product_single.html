@@ -1,6 +1,4 @@
 {% extends 'base_1.html' %}
-{% load humanize %}
-
 {% load static %}
 {% block title %}Resale All Product
 {% endblock %}
@@ -8,7 +6,7 @@
 {% block head %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/product_detail.css' %}">
 <style type="text/css">
-		<style type="text/css">
+    <style type="text/css">
 
 
 /*****************globals*************/
@@ -186,88 +184,91 @@ img {
   letter-spacing: 1px;
 } 
 
-	</style>
+  </style>
 
 </style>
 {% endblock %}
 <!-- body -->
 <script type="text/javascript">
-	
+  
 </script>
 {% block body %}
 
-	<!-- breadcrumbs -->
-	<div style=" background: white;">
-	<div class="w3layouts-breadcrumbs text-center">
-		<div class="container">
-			<span class="agile-breadcrumbs">
-			<a href="index.html"><i class="fa fa-home home_1"></i></a>
-			<a href="{% url 'all_products' %}">All Ads</a> / 
-			<span>{{ product.title }}</span></span>
-		</div>
-	</div>
-	<!-- //breadcrumbs -->
+  <!-- breadcrumbs -->
+  <div style=" background: white;">
+  <div class="w3layouts-breadcrumbs text-center">
+    <div class="container">
+      <span class="agile-breadcrumbs">
+      <a href="index.html"><i class="fa fa-home home_1"></i></a>
+      <a href="{% url 'all_products' %}">All Ads</a> / 
+      <span>{{ product.title }}</span></span>
+    </div>
+  </div>
+  <!-- //breadcrumbs -->
                 {% include 'partials/_alert.html' %}
-	
-	<!-- form -->
+  
+  <!-- form -->
 
-	<div class="container">
+  <div class="container">
     <div class="card">
       <div class="container-fliud">
         <div class="wrapper row">
           <div class="preview col-md-6">
             
             <div class="preview-pic tab-content">
-              <div class="tab-pane active" id="pic-1"><img src="{{ product.image.url }}" /></div>
-              {% if product.image_2 %}
-              <div class="tab-pane" id="pic-2"><img src="{{ product.image_2.url }}" /></div>
-              {% endif %}
-              {% if product.image_3 %}
-              <div class="tab-pane" id="pic-3"><img src="{{ product.image_3.url }}" /></div>
-              {% endif %}
-              {% if product.image_4 %}
-              <div class="tab-pane" id="pic-4"><img src="{{ product.image_4.url }}" /></div>
-              {% endif %}
-              {% if product.image_5 %}
-              <div class="tab-pane" id="pic-5"><img src="{{ product.image_5.url }}" /></div>
-              {% endif %}
+              <div class="tab-pane active" id="pic-1"><img src="http://placekitten.com/400/252" /></div>
+              <div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" /></div>
+              <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
+              <div class="tab-pane" id="pic-4"><img src="http://placekitten.com/400/252" /></div>
+              <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div>
             </div>
             <ul class="preview-thumbnail nav nav-tabs">
-              <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="{{ product.image.url }}" /></a></li>
-              {% if product.image_2 %}
-              <li><a data-target="#pic-2" data-toggle="tab"><img src="{{ product.image_2.url }}" /></a></li>
-              {% endif %}
-              {% if product.image_3 %}
-              <li><a data-target="#pic-3" data-toggle="tab"><img src="{{ product.image_3.url }}" /></a></li>
-              {% endif %}
-              {% if product.image_4 %}
-              <li><a data-target="#pic-4" data-toggle="tab"><img src="{{ product.image_4.url }}" /></a></li>
-              {% endif %}
-              {% if product.image_5 %}
-              <li><a data-target="#pic-5" data-toggle="tab"><img src="{{ product.image_5.url }}" /></a></li>
-              {% endif %}
+              <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+              <li><a data-target="#pic-2" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+              <li><a data-target="#pic-3" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+              <li><a data-target="#pic-4" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+              <li><a data-target="#pic-5" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
             </ul><br><br>
-
-
+                <div class="row">
+            <div class="col-md-12">
+           <div class="seller_info flex-grow" >
+              <div style="padding: 20px; border:5px solid #737373;">
+                <h4 class="product-title text-center p-5">Seller Information</h4>
+                <h4 class="">Name:
+                 <span style="color: grey;margin-left: 25px;" class="text-capitalize">Prawesh panthi</span>
+                </h5><br>
+                <h4 class="">Email:
+                 <span style="color: grey;margin-left: 25px;" class="text-capitalize">Prawesh panthi</span>
+                </h5><br>
+                 <h4 class="">Date Joined:
+                 <span style="color: grey;margin-left: 25px;" class="text-capitalize">Prawesh panthi</span>
+                </h5><br>
+                 <h4 class="">Last Login:
+                 <span style="color: grey;margin-left: 25px;" class="text-capitalize">Prawesh panthi</span>
+                </h5>
+              </div>
+            </div>
+            </div>
+            </div>
           </div>
           <div class="details col-md-6">
-            <h3 class="product-title" style="margin-bottom:0px; ">{{ product.title }}<br>
-            </h3><br><p> <i class="glyphicon glyphicon-map-marker"></i> <a href="">{{ product.state }}</a>, <a href="">{{ product.city }}</a> | Added at {{ product.created | timesince }}, <b>Ad ID: {{ product.id }}</b></p><br>
+            <h3 class="product-title" style="margin-bottom:0px; ">men's shoes fashion
+            </h3><p> <i class="glyphicon glyphicon-map-marker"></i><a href="#">state</a>, <a href="#">city</a>| Added at 06:55 pm, Ad ID: 987654321</p><br>
             <div class="product-details">
-              <!--   <h4><span class="w3layouts-agileinfo">Category </span> : <a href="#">Company name</a><div class="clearfix"></div></h4> -->
-                <!-- <h4><span class="w3layouts-agileinfo">Views </span> : <strong>150</strong></h4> -->
-                <h4><span class="w3layouts-agileinfo">Price </span> : Rs {{ product.price | intcomma }}</h4>
+                <h4><span class="w3layouts-agileinfo">Category </span> : <a href="#">Company name</a><div class="clearfix"></div></h4>
+                <h4><span class="w3layouts-agileinfo">Views </span> : <strong>150</strong></h4>
+                <h4><span class="w3layouts-agileinfo">Price </span> : Petrol</h4>
                 <h4><span class="w3layouts-agileinfo">Description</span> :
                   <p style="width: 80%;">
-                  {{ product.description }}.</p>
+                  It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
                   <div class="clearfix"></div>
                 </h4>
 
           </div>
-            <h5 class="sizes">Home Delivery : 
-              <span class="size" data-toggle="tooltip" title="small">{{ product.home_delivery }}</span>
+            <h5 class="sizes">Home Delivery :
+              <span class="size" data-toggle="tooltip" title="small">Yes</span>
             </h5>
-            {% if product.home_delivery == 'Yes' %}
+
             <div class="row">
               <div class="col-md-6">
                 <p>
@@ -280,12 +281,11 @@ img {
               </p>
             </div>
             </div><br>
-            {% endif %}
-<!--             <h5 class="sizes">Created At :
+            <h5 class="sizes">Created At :
               <span class="size" data-toggle="tooltip" title="small">Yes</span>
-            </h5> -->
+            </h5>
 
-            <h4 class="price  text-capitalize">Price Negotiable<span style="color: grey;" class="text-capitalize">:   {{ product.price_negotiable }}</span></h4>
+            <h4 class="price  text-capitalize">Price Negotiable<span style="color: grey;" class="text-capitalize"> Rs 500</span></h4>
 
 
 <!--             <div class="row">
@@ -310,36 +310,9 @@ img {
 
             </div> -->          
             <div class="action">
-              <button class="add-to-cart btn btn- cont" type="button" data-toggle='modal' data-target="#myModal">Contact the Seller</button>
+              <button class="add-to-cart btn btn- cont" type="button">Contact the Seller</button>
             </div>
 
-          </div>
-
-        </div>
-        <div class="row">
-          <div class="col-md-6"></div>
-          <div class="col-md-6">
-                            <div class="row">
-                  <div class="col-md-12">
-                   <div class="seller_info flex-grow" >
-                      <div style="padding: 20px; border:5px solid #737373;">
-                        <h4 class="product-title text-center p-5">Seller Information</h4>
-                        <h4 class="">Name:
-                         <span style="color: grey;margin-left: 25px;" class="text-capitalize">{{ product.author.first_name }} {{ product.author.last_name }}</span>
-                        </h5><br>
-                      <h4 class="">Email:
-                       <span style="color: grey;margin-left: 25px;" class="text-capitalize">{{ product.author.email }}</span>
-                      </h5><br>
-                       <h4 class="">Date Joined:
-                       <span style="color: grey;margin-left: 25px;" class="text-capitalize">{{ product.author.date_joined }}</span>
-                      </h5><br>
-                       <h4 class="">Last Login:
-                       <span style="color: grey;margin-left: 25px;" class="text-capitalize">{{ product.author.last_login }}</span>
-                      </h5>
-              </div>
-            </div>
-            </div>
-            </div>
           </div>
         </div>
       </div>
@@ -349,9 +322,9 @@ img {
     </div>
   </div>
 
-	<!--//single-page-->
-	<!-- form -->
-		<div class="container">
+  <!--//single-page-->
+  <!-- form -->
+    <div class="container">
   <!-- Trigger the modal with a button -->
 
   <!-- Modal -->
@@ -364,34 +337,34 @@ img {
  
         <div class="modal-body" style="padding: 10px;">
           <div class="form-style-5">
-			<form action="{% url 'contact'  %}" method="POST">
-				{% csrf_token %}
-				{% if user.is_authenticated %}
-	              <input type="hidden" name="user_id" value="{{ user.id }}">
+      <form action="{% url 'contact'  %}" method="POST">
+        {% csrf_token %}
+        {% if user.is_authenticated %}
+                <input type="hidden" name="user_id" value="{{ user.id }}">
 
-				{% else %}
-	              <input type="hidden" name="user_id" value="0">
-				{% endif %}
-				  <input type="hidden" name="seller_email" value="{{ product.author.email }}">
-				  <input type="hidden" name="listing_slug" value="{{ product.slug }}">
+        {% else %}
+                <input type="hidden" name="user_id" value="0">
+        {% endif %}
+          <input type="hidden" name="seller_email" value="{{ product.author.email }}">
+          <input type="hidden" name="listing_slug" value="{{ product.slug }}">
 
             <input type="hidden" name="listing_id" value="{{ product.id }}">
-			<fieldset>
-			<legend><span class="number">.</span>Contact to Seller</legend>
-			<label>Product Title</label>
-			<input type="text" name="product_title" placeholder="Product Title *" value="{{ product.title }}" required>
-			<label>Name</label>
-			<input type="text" name="full_name" placeholder="Full Name *" {% if user.is_authenticated %} value="{{ user.first_name }} {{ user.last_name }}" {% endif %}>
-			<label>Email</label>
-			<input type="email" name="email" placeholder="Your Email *" {% if user.is_authenticated %} value="{{ user.email }}" {% endif %} required>
-			<label>Phone</label>
-			<input type="number" name="phone" placeholder="Your Phone *" required>
-			<span class="text-muted">You Will be Getting Call or email by Seller </span>
-			
-			<textarea name="message" placeholder="Message *"></textarea>
-			<input type="submit" value="Send" />
-			</form>
-			</div>
+      <fieldset>
+      <legend><span class="number">.</span>Contact to Seller</legend>
+      <label>Product Title</label>
+      <input type="text" name="product_title" placeholder="Product Title *" value="{{ product.title }}" required>
+      <label>Name</label>
+      <input type="text" name="full_name" placeholder="Full Name *" {% if user.is_authenticated %} value="{{ user.first_name }} {{ user.last_name }}" {% endif %}>
+      <label>Email</label>
+      <input type="email" name="email" placeholder="Your Email *" {% if user.is_authenticated %} value="{{ user.email }}" {% endif %} required>
+      <label>Phone</label>
+      <input type="number" name="phone" placeholder="Your Phone *" required>
+      <span class="text-muted">You Will be Getting Call or email by Seller </span>
+      
+      <textarea name="message" placeholder="Message *"></textarea>
+      <input type="submit" value="Send" />
+      </form>
+      </div>
         </div>
       </div>
       

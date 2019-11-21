@@ -223,16 +223,16 @@ Smartphone Compatible web, free webdesigns for Nokia, Samsung, LG, Sony Ericsson
 					<h1><a href="{% url 'home' %}"style="font-size: 40px;text-decoration: none;"><span >Online-</span>Marketplace</a></h1>
 				</div>
 				<div class="agileits_search">
-					<form action="#" method="post">
-						<input name="Search" type="text" placeholder="How can we help you today?" required="" />
-						<select id="agileinfo_search" name="agileinfo_search" required="">
+					<form action="{% url 'search' %}">
+						<input name="keywords" type="text" placeholder="Search" >
+						<select id="agileinfo_search" name="category_id" >
 							<option value="">All Categories</option>
 
 					{% for category in categories %}
-							<option value="{{ category.name }}">{{ category.name }}</option>
+							<option value="{{ category.id }}">{{ category.name }}</option>
 					{% endfor %}
 						</select>
-						<button type="submit" class="btn btn-default" aria-label="Left Align">
+						<button type="submit" class="btn btn-default" aria-label="Left Align" >
 							<i class="fa fa-search" aria-hidden="true"> </i>
 						</button>
 					</form>

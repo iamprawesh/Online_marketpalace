@@ -91,7 +91,7 @@ border:3px solid  white;
                                 <div class="thumb-content">
                                     <h4>{{ product.title }}</h4>                                 
                                     <p class="" style="border:none;"><span style="float:left">{{ product.condition }}</span><b style="font-size: 20px;">Rs {{ product.price }}</b></p>
-                                    <a href="{% url 'pro_details' slug=product.slug %}" class="btn btn-primary">View detail</a>
+                                    <a href="{% url 'pro_details' slug=product.slug p_id=product.id %}" class="btn btn-primary">View detail</a>
                                 </div>                      
                             </div>
                         </div>
@@ -107,7 +107,7 @@ border:3px solid  white;
                                 <div class="thumb-content">
                                     <h4>{{ product.title }}</h4>                                 
                                     <p class="" style="border:none;"><span style="float:left">{{ product.condition }}</span><b style="font-size: 20px;">Rs {{ product.price }}</b></p>
-                                    <a href="{% url 'pro_details' slug=product.slug %}" class="btn btn-primary">View detail</a>
+                                    <a href="{% url 'pro_details' slug=product.slug p_id=product.id %}" class="btn btn-primary">View detail</a>
                                 </div>                      
                             </div>
                         </div>
