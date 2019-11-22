@@ -1,0 +1,80 @@
+{% extends 'base_1.html' %}
+{% load static %}
+{% block title %}Dashboard | Order Request{% endblock %}
+{% block head %}
+<style type="text/css">
+
+
+</style>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="{% static 'css/sidebar.css' %}">
+{% endblock %}
+{% block body %}
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2 sidebar-1">
+      	<div id="sidebar">
+		<ul>
+                {% include 'partials/_sidebar_dashboard.html' %}
+					
+		</ul>
+		</div>
+		</div>
+		<div class="col-10">
+                {% include 'partials/_alert.html' %}
+			
+			<div class="jumbotron jumbotron-fluid">
+			  <div class="container">
+
+
+			    		<!-- table -->
+			    	{% if my_products %}
+					<table class="table table-hover" style="font-size: 20px; background-color: white;">
+					  <thead class="thead-dark">
+					    <tr>
+					      <th scope="col">Product Name</th>
+					      <th scope="col">Contact Name</th>
+					      <th scope="col">Contact Number</th>
+					      <th scope="col">Contact Email</th>
+					      <th scope="col">Action</th>
+
+					    </tr>
+					  </thead>
+					  <tbody style="color: black;">
+					    {% for contact in my_products %}
+					    <tr>
+					      <th scope="row"><a href="{% url 'pro_details' slug=contact.listing_id p_id=contact.listing_id %}">{{ contact.product_title }}</a></th>
+					      <td>{{ contact.name }}</td>
+					      <td>{{ contact.phone }}</td>
+					      <td>{{ contact.email }}</td>
+					      <td><a href="{% url 'delete_contact' pk=contact.id %}">Order Complete</a></td>
+
+					    </tr>
+					    {% endfor %}
+<!-- 					    <tr>
+					      <th scope="row">2</th>
+					      <td>Jacob</td>
+					      <td>Thornton</td>
+					      <td>@fat</td>
+					    </tr>
+					    <tr>
+					      <th scope="row">3</th>
+					      <td colspan="2">Larry the Bird</td>
+					      <td>@twitter</td>
+					    </tr> -->
+					  </tbody>
+					</table>
+								<!-- table close -->
+								{% else %}
+								<h2>You have no any request from Buyer</h2>
+								{% endif %}
+			  </div>
+			</div>
+				
+		</div>
+
+	</div>
+</div>
+
+{% endblock %}

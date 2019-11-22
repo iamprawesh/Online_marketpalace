@@ -1,8 +1,10 @@
 from django.db import models
 from datetime import datetime
+from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 # Create your models here.
 class Contact(models.Model):
+	real_author = models.IntegerField(null=True,blank=True)
 	phone_regex = RegexValidator(regex=r'^\d{8,10}$', message="Phone number must be entered in the upto 10 digits")
 	product_title = models.CharField(max_length=200)
 	listing_id = models.IntegerField()

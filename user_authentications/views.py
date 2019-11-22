@@ -5,10 +5,32 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import SignUpForm
 from django.contrib.auth.models import User
+from django.urls import reverse_lazy
+
 from django.http import JsonResponse
 from django.views.generic import View
 from product.models import Product,City,Category
 from django.contrib.auth.decorators import login_required
+from contacts.models import Contact
+# for delete the request form user to seller about products
+from django.views.generic import DeleteView
+from django.utils.decorators import method_decorator
+from django.contrib.messages.views import SuccessMessageMixin
+
+
+@method_decorator(login_required, name='dispatch')        
+class ContactDeleteView(SuccessMessageMixin ,DeleteView):
+    model = Contact
+
+    success_url = reverse_lazy('order_request')
+    template_name = 'accounts/delete_contact.html'
+    # success_message  = '%(title) Your Product has been deleted'
+    def form_valid(self, form):
+        messages.success(self.request,'Your request from  buyer has been deleted ')
+        return redirect(reverse("order_request", kwargs={
+            # 'slug': form.instance.slug
+        }))
+
 
 def register_user(request):
     if request.method == 'POST':
@@ -44,24 +66,6 @@ def user_login(request):
     products = Product.objects.all()
     return render(request,'user_authentications/login.html',{'categories':categories,'products':products})
 
-#     categories = Category.objects.all()
-#     if request.method == 'POST':
-#         form = SignUpForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             username = form.cleaned_data['username']
-#             password = form.cleaned_data['password1']
-#             user = authenticate(request, username=username, password=password)
-#             if user is not None:
-#                 login(request, user)
-#                 messages.success(request, ('You have been logged in!'))
-#                 return redirect('home')
-#     else:
-#         form = SignUpForm()
-
-#     context = {'form': form,'categories':categories}
-#     return render(request, 'user_authentications/signup.html', context)
-
 def validate_username(request):
     username = request.GET.get('username', None)
     data = {
@@ -90,22 +94,6 @@ def user_login(request):
     else:
         return render(request,'accounts/login.html',{'categories':categories})
 
-# def user_login(request):
-#     categories = Category.objects.all()
-#     if request.method == 'POST':
-#         form = AuthenticationForm(data=request.POST)
-#         if form.is_valid():
-#             # login in to user
-#             user = form.get_user()
-#             login(request,user)
-#             if 'next' in request.POST:
-#                 return redirect(request.POST.get('next'))
-#                 # return redirect('blog:create')
-#             return redirect('home')
-#     else:
-#         form = AuthenticationForm()
-#     return render(request,'user_authentications/login.html',{'form':form,'categories':categories})
-
 
 def logout_view(request):
     # if request.method == 'POST':/
@@ -125,4 +113,31 @@ def my_add(request):
     return render(request,'accounts/my_adds.html',
         {
             'my_products':my_products,
+        })
+
+@login_required(login_url="/accounts/login/")
+def order_request(request):
+    user_contacts = Contact.objects.order_by('-contact_date').filter(real_author=request.user.id)
+    return render(request,'accounts/order_request.html',
+        {
+            'my_products':user_contacts,
+        })
+
+@login_required(login_url="/accounts/login/")
+def order_request_delete(request,id):
+    if request.method == 'Post':
+        query = Contact.objects.get(pk=id)
+        return render(request,'accounts/order_request_delete.html',
+            {
+                'my_products':user_contacts,
+            })
+
+
+@login_required(login_url="/accounts/login/")
+def feature_add(request):
+    # my_products = Product.objects.order_by('-created').filter(author=request.user.id)
+    # user_contacts = Contact.objects.order_by('-contact_date').filter(listing_id=request.user.id)
+    return render(request,'accounts/feature.html',
+        {
+            # 'my_products':my_products,
         })

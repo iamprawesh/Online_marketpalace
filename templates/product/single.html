@@ -374,6 +374,8 @@ img {
 				{% endif %}
 				  <input type="hidden" name="seller_email" value="{{ product.author.email }}">
 				  <input type="hidden" name="listing_slug" value="{{ product.slug }}">
+          <input type="hidden" name="author" value="{{ product.author.id }}">
+
 
             <input type="hidden" name="listing_id" value="{{ product.id }}">
 			<fieldset>

@@ -1,0 +1,30 @@
+<ul>
+			<li><a href="{% url 'all_products' %}"
+				>View All Ads
+			</a></li>
+			<li
+			{% if '/accounts/dashboard/my-adds' == request.path %}
+                        class="x"><a href={% url 'my_add' %} class="y">
+                    {% else %}
+                    ><a href={% url 'my_add' %} class="">
+                    {% endif %}
+			
+
+			View all My Adds</a></li>
+			<li
+			{% if '/accounts/dashboard/order-requests' == request.path %}
+                        class="x"><a href={% url 'order_request' %} class="y">
+                    {% else %}
+                    ><a href={% url 'order_request' %} class="">
+                    {% endif %}
+			
+
+			Order Requests</a></li>
+			<li
+			{% if '/accounts/dashboard/feature_add' == request.path %}
+                        class="x"><a href={% url 'feature_your_add' %} class="y">
+                    {% else %}
+                    ><a href={% url 'feature_your_add' %} class="">
+                    {% endif %}
+			Feature Your Add</a></li>
+		</ul>

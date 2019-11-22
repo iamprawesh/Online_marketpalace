@@ -23,39 +23,8 @@
   <div class="row">
     <div class="col-2 sidebar-1">
       	<div id="sidebar">
-		<ul>
-			<li><a href="{% url 'all_products' %}"
-				
-				>View All Ads
-			</a></li>
-			<li
-			{% if '/accounts/dashboard/my-adds' == request.path %}
-                        class="x"><a href={% url 'my_add' %} class="y">
-                    {% else %}
-                    ><a href={% url 'my_add' %} class="y">
-                    {% endif %}
+                {% include 'partials/_sidebar_dashboard.html' %}
 			
-
-			View all My Adds</a></li>
-			<li
-			{% if ':prawesh' == request.path %}
-                        class="x"><a href={% url 'my_add' %} class="y">
-                    {% else %}
-                    ><a href={% url 'my_add' %} class="">
-                    {% endif %}
-			
-
-			Order Requests</a></li>
-			<li
-			{% if '' == request.path %}
-                        class="x"><a href={% url 'my_add' %} class="y">
-                    {% else %}
-                    ><a href={% url 'my_add' %} class="">
-                    {% endif %}
-			
-
-			Feature Your Add</a></li>
-		</ul>"
 		</div>
 		</div>
 		<div class="col-10">
@@ -65,6 +34,7 @@
 
 				<div class="row">
 					<div class="col-xs-8">
+						{% if my_products %}
 					<h2 class="text-center" style="text-transform: uppercase; margin-top: 10px;"><b>View All My Adds</b></h2><hr>
 
 						<div class="panel panel-info" style="margin-top: 20px;">
@@ -102,6 +72,9 @@
 								{% endfor %}	
 							</div>
 						</div>
+						{% else %}
+						<h2 class="text-center" style="text-transform: uppercase; margin-top: 10px;"><b>You have not listed any adds</b></h2><hr>
+						{% endif %}
 					</div>
 				</div>
 			</div>
